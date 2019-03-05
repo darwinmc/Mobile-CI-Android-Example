@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MobileCI</string>
+    <string name="login_username_placeholder">Username</string>
+    <string name="login_password_placeholder">Password</string>
+    <string name="login_login_button_title">Log In</string>
+    <string name="login_response_success">Successful log in.</string>
+    <string name="login_response_fail">Log in failed.</string>
+    <string name="empty"></string>
+</resources>

@@ -1,0 +1,3 @@
+[submodule "app/src/androidTest/assets/features"]
+	path = app/src/androidTest/assets/features
+	url = https://github.com/Paldom/Mobile-CI-Gherkin
