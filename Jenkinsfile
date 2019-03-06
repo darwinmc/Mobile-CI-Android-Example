@@ -10,7 +10,7 @@ pipeline {
         sh 'git submodule update --init --recursive'
       }
     }
-    stage('Sonar analysis') {
+    stage('Sonar test') {
       steps {
         sh 'sonar-scanner'
       }
