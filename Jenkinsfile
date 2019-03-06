@@ -5,6 +5,11 @@ pipeline {
     }
   }
   stages {
+    stage('Setup') {
+      steps {
+        sh 'source ~/.bash_profile'
+      }
+    }
     stage('Build') {
       steps {
         sh './gradlew clean assembleDebug'
