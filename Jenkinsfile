@@ -5,11 +5,6 @@ pipeline {
     }
   }
   stages {
-    stage('Setup') {
-      steps {
-        sh 'source ~/.bashrc'
-      }
-    }
     stage('Build') {
       steps {
         sh './gradlew clean assembleDebug'
