@@ -12,7 +12,7 @@ pipeline {
     }
     stage('Sonar test') {
       steps {
-        sh 'sonar-scanner'
+        sh '/usr/local/bin/sonar-scanner'
       }
     }
     stage('Build') {
