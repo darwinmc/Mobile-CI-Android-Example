@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Setup') {
       steps {
-        sh 'source /etc/profile'
+        sh 'source ~/.bashrc'
       }
     }
     stage('Build') {
