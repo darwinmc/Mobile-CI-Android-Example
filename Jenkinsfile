@@ -10,11 +10,6 @@ pipeline {
         sh 'git submodule update --init --recursive'
       }
     }
-    stage('Sonar test') {
-      steps {
-        sh '/usr/local/bin/sonar-scanner'
-      }
-    }
     stage('Build') {
       steps {
         sh './gradlew clean assembleDebug'
@@ -47,13 +42,13 @@ pipeline {
         archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/LIVE/**/*.*', fingerprint: true)
       }
     }
-    stage('Sonar analysis') {
+    /*stage('Sonar analysis') {
       steps {
         withSonarQubeEnv('Sonar') { 
           sh 'sonar-scanner'
         }
       }
-    }
+    }*/
     stage('Deploy fabric') {
       when { 
         branch "develop/*" 
