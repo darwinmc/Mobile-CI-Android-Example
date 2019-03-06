@@ -5,6 +5,11 @@ pipeline {
     }
   }
   stages {
+    stage('Setup') {
+      steps {
+        sh 'source /etc/profile'
+      }
+    }
     stage('Build') {
       steps {
         sh './gradlew clean assembleDebug'
