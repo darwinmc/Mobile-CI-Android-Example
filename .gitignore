@@ -67,6 +67,5 @@ fastlane/readme.md
 # CI
 .scannerwork
 reports
-reports_mock/
-reports_live/
-build/
+
+.DS_Store
