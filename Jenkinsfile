@@ -5,11 +5,6 @@ pipeline {
     }
   }
   stages {
-    stage('Setup') {
-      steps {
-        sh '. ~/.bash_profile'
-      }
-    }
     stage('Build') {
       steps {
         sh './gradlew clean assembleDebug'
@@ -18,19 +13,19 @@ pipeline {
     stage('Lint') {
       steps {
         sh './gradlew lint'
-        archiveArtifacts(fingerprint: true, artifacts: '/app/build/reports/lint-results.html')
+        archiveArtifacts(fingerprint: true, artifacts: 'app/build/reports/lint-results.html')
       }
     }
     stage('Unit test') {
       steps {
         sh './gradlew testMockDebugUnitTest'
-        archiveArtifacts(artifacts: '/app/build/reports/tests/testMockDebugUnitTest/index.html', fingerprint: true)
+        archiveArtifacts(artifacts: 'app/build/reports/tests/testMockDebugUnitTest/index.html', fingerprint: true)
       }
     }
     stage('Mock UI test') {
       steps {
         sh './gradlew connectedMockDebugAndroidTest'
-        archiveArtifacts(artifacts: '/app/build/reports/androidTests/connected/flavors/MOCK/index.html', fingerprint: true)
+        archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/MOCK/index.html', fingerprint: true)
       }
     }
     stage('Live UI test') {
@@ -39,7 +34,7 @@ pipeline {
       }
       steps {
         sh './gradlew connectedLiveDebugAndroidTest'
-        archiveArtifacts(artifacts: '/app/build/reports/androidTests/connected/flavors/LIVE/index.html', fingerprint: true)
+        archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/LIVE/index.html', fingerprint: true)
       }
     }
     stage('Sonar analysis') {
