@@ -10,6 +10,11 @@ pipeline {
         sh 'git submodule update --init --recursive'
       }
     }
+    stage('Sonar analysis') {
+      steps {
+        sh 'sonar-scanner'
+      }
+    }
     stage('Build') {
       steps {
         sh './gradlew clean assembleDebug'
