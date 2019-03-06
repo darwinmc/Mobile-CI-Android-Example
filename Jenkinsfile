@@ -5,6 +5,10 @@ pipeline {
     }
   }
   stages {
+    stage('Checkout Submodules') {
+      steps {
+        sh 'git submodule update --recursive --remote'
+    }
     stage('Build') {
       steps {
         sh './gradlew clean assembleDebug'
@@ -19,13 +23,13 @@ pipeline {
     stage('Unit test') {
       steps {
         sh './gradlew testMockDebugUnitTest'
-        archiveArtifacts(artifacts: 'app/build/reports/tests/testMockDebugUnitTest/index.html', fingerprint: true)
+        archiveArtifacts(artifacts: 'app/build/reports/tests/testMockDebugUnitTest', fingerprint: true)
       }
     }
     stage('Mock UI test') {
       steps {
         sh './gradlew connectedMockDebugAndroidTest'
-        archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/MOCK/index.html', fingerprint: true)
+        archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/MOCK', fingerprint: true)
       }
     }
     stage('Live UI test') {
@@ -34,7 +38,7 @@ pipeline {
       }
       steps {
         sh './gradlew connectedLiveDebugAndroidTest'
-        archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/LIVE/index.html', fingerprint: true)
+        archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/LIVE', fingerprint: true)
       }
     }
     stage('Sonar analysis') {
