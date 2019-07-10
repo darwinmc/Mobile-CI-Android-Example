@@ -64,8 +64,12 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
 
+# Fabric
+fabric.properties
+
 # CI
 .scannerwork
 reports
+keys.sh
 
 .DS_Store
