@@ -26,19 +26,19 @@ pipeline {
     }
     stage('Lint') {
       steps {
-        sh './gradlew lint'
-        archiveArtifacts(fingerprint: true, artifacts: 'app/build/reports/lint-results.html')
+        sh './gradlew clean lintMockDebug'
+        archiveArtifacts(fingerprint: true, artifacts: 'app/build/reports/lint-results-mockDebug.html')
       }
     }
-    stage('Unit test') {
+    stage('Detekt') {
       steps {
-        sh './gradlew clean testMockDebugUnitTest'
-        archiveArtifacts(artifacts: 'app/build/reports/tests/testMockDebugUnitTest/**/*.*', fingerprint: true)
+        sh './gradlew detekt'
+        archiveArtifacts(fingerprint: true, artifacts: 'build/reports/detekt/detekt.html')
       }
     }
     stage('Mock UI test') {
       steps {
-        sh './gradlew clean connectedMockDebugAndroidTest'
+        sh './gradlew connectedMockDebugAndroidTest'
         archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/MOCK/**/*.*', fingerprint: true)
       }
     }
@@ -47,13 +47,13 @@ pipeline {
           branch "develop/*" 
       }
       steps {
-        sh './gradlew clean connectedLiveDebugAndroidTest'
+        sh './gradlew connectedLiveDebugAndroidTest'
         archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/LIVE/**/*.*', fingerprint: true)
       }
     }
     stage('Coverage') {
       steps {
-        sh './gradlew clean jacocoTestReport'
+        sh './gradlew jacocoTestReport'
         archiveArtifacts(artifacts: 'app/build/reports/coverage/mock/debug/**/*.*', fingerprint: true)
       }
     }
