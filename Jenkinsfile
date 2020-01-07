@@ -13,7 +13,9 @@ pipeline {
 
     mockApp = "app/build/outputs/apk/mock/release/app-mock-release"
     liveApp = "app/build/outputs/apk/live/release/app-live-release"
+
     fileNameExt = "${version_number_filename}-build-${build_number}-git-${git_hash}"
+
     mockAppRenamed =  "${mockApp}_${fileNameExt}"
     liveAppRenamed =  "${liveApp}_${fileNameExt}"
   }
@@ -21,7 +23,7 @@ pipeline {
     stage('Checkout Submodules') {
       steps {
         sh 'git submodule update --init --recursive'
-        sh 'cp keys/fabric.properties app/fabric.properties'
+        sh 'cp keys/google-services.json app/google-services.json'
       }
     }
     stage('Lint') {
@@ -69,7 +71,7 @@ pipeline {
         sh './gradlew clean assembleRelease'
       }
     }
-    stage('Deploy artifactory') {
+    stage('Deploy to Artifactory') {
       when { 
         branch "develop" 
       }
@@ -80,15 +82,16 @@ pipeline {
         sh "jfrog rt u ${liveAppRenamed}.apk mobile-ci-android/hu/dpal/mobileci/${version_number}/${build_number}/live/${liveAppRenamed}.apk --build-name=MobileCIAndroidLive --build-number=${build_number} --props=\"git=${git_hash}\""
       }
     }
-    stage('Deploy fabric') {
+    stage('Deploy to Firebase App Distribution') {
       when { 
         branch "develop" 
       }
       steps {
-        sh './gradlew crashlyticsUploadDistributionLiveRelease'
+        sh "firebase appdistribution:distribute ${mockAppRenamed}.apk --app 1:553594402808:android:f401a1eef7673a5350080d"
+        sh "firebase appdistribution:distribute ${liveAppRenamed}.apk --app 1:553594402808:android:b94ea9dd594fb56650080d"
       }
     }
-    stage('Deploy beta') {
+    stage('Deploy to Play Beta') {
       when { 
         branch "release/*" 
       }
@@ -99,7 +102,7 @@ pipeline {
   }
   post {
     always {
-      sh 'echo "TODO: DESTROY"'
+      sh 'echo "Destroyed'
     }
   }
 }
