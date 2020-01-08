@@ -62,7 +62,7 @@ pipeline {
     stage('Sonar analysis') {
       steps {
         withSonarQubeEnv('Sonar') { 
-          sh "sonar-scanner -Dsonar.branch=${branch}"
+          sh "sonar-scanner -Dsonar.branch.name=${branch}"
         }
       }
     }
