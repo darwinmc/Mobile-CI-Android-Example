@@ -102,7 +102,7 @@ pipeline {
   }
   post {
     always {
-      sh 'echo "Destroyed'
+      sh 'echo "Destroyed"'
     }
   }
 }

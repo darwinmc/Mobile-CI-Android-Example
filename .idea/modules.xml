@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Mobile-CI-Android-Example.iml" filepath="$PROJECT_DIR$/Mobile-CI-Android-Example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Mobile-CI-Android-Example-app.iml" filepath="$PROJECT_DIR$/app/Mobile-CI-Android-Example-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/git-Mobile-CI-Android-Example.iml" filepath="$PROJECT_DIR$/git-Mobile-CI-Android-Example.iml" />
     </modules>
   </component>
 </project>
