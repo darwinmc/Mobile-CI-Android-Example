@@ -96,7 +96,7 @@ pipeline {
         branch "release/*" 
       }
       steps {
-        sh 'echo "TODO: BETA DEPLOY"'
+        sh 'echo "TODO: BETA DEPLOYMENT"'
       }
     }
   }
