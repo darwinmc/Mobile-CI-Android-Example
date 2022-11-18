@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'mac'
+      label 'Jenkins_Master'
     }
   }
   environment {
