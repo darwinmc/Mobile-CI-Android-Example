@@ -1,8 +1,8 @@
 pipeline {
   agent {
-    node {
+   
       label 'Jenkins_Master'
-    }
+  
   }
   environment {
     build_number = sh(returnStdout: true, script: './gradlew -q printVersionCode').trim()
