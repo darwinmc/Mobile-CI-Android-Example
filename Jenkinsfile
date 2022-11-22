@@ -4,6 +4,7 @@ pipeline {
       label 'jenkins_slave1'
     }
   }
+  
   environment {
     build_number = sh(returnStdout: true, script: './gradlew -q printVersionCode').trim()
     version_number = sh(returnStdout: true, script: './gradlew -q printVersionName').trim()
