@@ -1,9 +1,10 @@
 pipeline {
   agent {
     node {
-      label 'mac'
+      label 'jenkins_slave1'
     }
   }
+  
   environment {
     build_number = sh(returnStdout: true, script: './gradlew -q printVersionCode').trim()
     version_number = sh(returnStdout: true, script: './gradlew -q printVersionName').trim()
@@ -96,13 +97,22 @@ pipeline {
         branch "release/*" 
       }
       steps {
-        sh 'echo "TODO: BETA DEPLOY"'
+        sh 'echo "TODO: BETA DEPLOYMENT"'
       }
     }
   }
-  post {
+ /* post {
     always {
       sh 'echo "Destroyed"'
     }
-  }
+  }*/
+  post { 
+        always {
+            script {
+                if (getContext(hudson.FilePath)) {
+                    deleteDir()
+                }
+            }
+        }
+    }
 }
