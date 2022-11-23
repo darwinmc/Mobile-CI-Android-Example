@@ -24,7 +24,6 @@ pipeline {
     stage('Checkout Submodules') {
       steps {
         sh 'git submodule update --init --recursive'
-        sh 'cp keys/google-services.json app/google-services.json'
       }
     }
     stage('Lint') {
