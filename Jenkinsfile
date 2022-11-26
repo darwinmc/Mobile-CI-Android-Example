@@ -111,11 +111,11 @@ pipeline {
   }*/
   post { 
         always {
-            script {
+            /* script {
                 if (getContext(hudson.FilePath)) {
                     deleteDir()
                 }
-            }
+            } */
         }
     }
 }
