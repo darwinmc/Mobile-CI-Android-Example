@@ -18,4 +18,5 @@ chmod +x android-wait-for-emulator
 adb shell input keyevent 82
 
 #start tests
+export ADB_INSTALL_TIMEOUT=5
 ./gradlew connectedMockDebugAndroidTest --info
