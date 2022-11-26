@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Download an ARM system image to create an ARM emulator.
-sdkmanager "system-images;android-23;default;armeabi-v7a"
+sdkmanager "system-images;android-19;default;armeabi-v7a"
 
 # Launch the emulator in the background
 # Create an ARM AVD emulator, with a 100 MB SD card storage space. Echo "no"
