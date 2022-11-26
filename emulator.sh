@@ -19,5 +19,3 @@ adb shell input keyevent 82
 
 #start tests
 export ADB_INSTALL_TIMEOUT=10
-./gradlew connectedMockDebugAndroidTest --info
-export ADB_INSTALL_TIMEOUT=10
