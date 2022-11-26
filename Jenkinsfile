@@ -104,18 +104,18 @@ pipeline {
       }
     }
   }
- /* post {
+   post {
     always {
       sh 'echo "Destroyed"'
     }
-  }*/
-  post { 
+  }
+ /* post { 
         always {
-            /* script {
+             script {
                 if (getContext(hudson.FilePath)) {
                     deleteDir()
                 }
-            } */
+            } 
         }
-    }
+    }*/
 }
