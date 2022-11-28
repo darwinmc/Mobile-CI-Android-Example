@@ -74,6 +74,8 @@ pipeline {
     }*/
     stage('Build') {
       steps {
+        sh 'mkdir keys'
+        sh 'cp /var/jenkins_home/upload-keystore.jks ./keys/keystore'
         sh './gradlew clean assembleRelease'
       }
     }
