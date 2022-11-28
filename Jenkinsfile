@@ -74,7 +74,10 @@ pipeline {
     }*/
     stage('Build') {
       steps {
-        sh './gradlew clean assembleRelease'
+        sh './gradlew clean'
+        sh "mkdir keys"
+        sh "cp -r /var/jenkins_home/upload-keystore.jks keys/keystore"
+        sh './gradlew assembleRelease'
       }
     }
    /* stage('Deploy to Artifactory') {
