@@ -65,13 +65,13 @@ pipeline {
         archiveArtifacts(artifacts: 'app/build/reports/coverage/mock/debug/**/*.*', fingerprint: true)
       }
     }
-    stage('Sonar analysis') {
+   /* stage('Sonar analysis') {
       steps {
         withSonarQubeEnv('Sonar') { 
           sh "sonar-scanner -Dsonar.branch.name=${branch}"
         }
       }
-    }
+    }*/
     stage('Build') {
       steps {
         sh './gradlew clean assembleRelease'
