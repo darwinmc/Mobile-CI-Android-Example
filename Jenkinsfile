@@ -77,7 +77,7 @@ pipeline {
         sh './gradlew clean assembleRelease'
       }
     }
-    stage('Deploy to Artifactory') {
+   /* stage('Deploy to Artifactory') {
       when { 
         branch "develop" 
       }
@@ -87,14 +87,14 @@ pipeline {
         sh "jfrog rt u ${mockAppRenamed}.apk mobile-ci-android/hu/dpal/mobileci/${version_number}/${build_number}/mock/${mockAppRenamed}.apk --build-name=MobileCIAndroidMock --build-number=${build_number} --props=\"git=${git_hash}\""
         sh "jfrog rt u ${liveAppRenamed}.apk mobile-ci-android/hu/dpal/mobileci/${version_number}/${build_number}/live/${liveAppRenamed}.apk --build-name=MobileCIAndroidLive --build-number=${build_number} --props=\"git=${git_hash}\""
       }
-    }
+    }*/
     stage('Deploy to Firebase App Distribution') {
       when { 
         branch "develop" 
       }
       steps {
-        sh "firebase appdistribution:distribute ${mockAppRenamed}.apk --app 1:553594402808:android:f401a1eef7673a5350080d"
-        sh "firebase appdistribution:distribute ${liveAppRenamed}.apk --app 1:553594402808:android:b94ea9dd594fb56650080d"
+        sh "firebase appdistribution:distribute ${mockAppRenamed}.apk --app 1:933578923930:android:cc7e2594e7c646fca16423"
+        sh "firebase appdistribution:distribute ${liveAppRenamed}.apk --app 1:933578923930:android:f2d2bb63760022daa16423"
       }
     }
     stage('Deploy to Play Beta') {
