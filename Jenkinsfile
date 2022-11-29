@@ -55,7 +55,6 @@ pipeline {
       steps {
         sh "chmod +x android-wait-for-emulator"
         sh "./android-wait-for-emulator"
-## Unlock the Lock Screen
         sh "adb shell input keyevent 82"
         // sh "${env.WORKSPACE}/emulator.sh"
         sh './gradlew connectedLiveDebugAndroidTest'
