@@ -40,10 +40,10 @@ pipeline {
     }
     stage('Mock UI test') {
       steps {
-      // Permission to execute
-      //  sh "chmod +x -R ${env.WORKSPACE}"
-      // Call SH
-      //  sh "${env.WORKSPACE}/emulator.sh"
+     // Permission to execute
+        sh "chmod +x -R ${env.WORKSPACE}"
+     // Call SH
+        sh "${env.WORKSPACE}/emulator.sh"
         sh './gradlew connectedMockDebugAndroidTest --info'
         archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/MOCK/**/*.*', fingerprint: true)
       }
