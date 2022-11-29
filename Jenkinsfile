@@ -41,10 +41,10 @@ pipeline {
     stage('Mock UI test') {
       steps {
       // Permission to execute
-        sh "chmod +x -R ${env.WORKSPACE}"
+      //  sh "chmod +x -R ${env.WORKSPACE}"
       // Call SH
-        sh "${env.WORKSPACE}/emulator.sh"
-        sh './gradlew connectedMockDebugAndroidTest'
+      //  sh "${env.WORKSPACE}/emulator.sh"
+        sh './gradlew connectedMockDebugAndroidTest --info'
         archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/MOCK/**/*.*', fingerprint: true)
       }
     }
@@ -53,6 +53,10 @@ pipeline {
           branch "develop/*" 
       }
       steps {
+        sh "chmod +x android-wait-for-emulator"
+        sh "./android-wait-for-emulator"
+## Unlock the Lock Screen
+        sh "adb shell input keyevent 82"
         // sh "${env.WORKSPACE}/emulator.sh"
         sh './gradlew connectedLiveDebugAndroidTest'
         archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/LIVE/**/*.*', fingerprint: true)
