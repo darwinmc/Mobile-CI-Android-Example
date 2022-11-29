@@ -53,14 +53,14 @@ pipeline {
           branch "develop/*" 
       }
       steps {
-        sh "${env.WORKSPACE}/emulator.sh"
+        // sh "${env.WORKSPACE}/emulator.sh"
         sh './gradlew connectedLiveDebugAndroidTest'
         archiveArtifacts(artifacts: 'app/build/reports/androidTests/connected/flavors/LIVE/**/*.*', fingerprint: true)
       }
     }
     stage('Coverage') {
       steps {
-        sh "${env.WORKSPACE}/emulator.sh"
+        // sh "${env.WORKSPACE}/emulator.sh"
         sh './gradlew jacocoTestReport'
         archiveArtifacts(artifacts: 'app/build/reports/coverage/mock/debug/**/*.*', fingerprint: true)
       }
